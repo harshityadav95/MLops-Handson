@@ -1,5 +1,5 @@
 # Use the official Python 3.12 slim image as the base
-FROM python:3.12-alpine
+FROM tensorflow/tensorflow:latest
 
 # Set the working directory inside the container to /app
 WORKDIR /app

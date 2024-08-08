@@ -13,7 +13,8 @@ import pickle
 from fastapi import FastAPI
 
 
-model = Word2Vec.load('w2v_OA_CR_100d.bin')
+modelvector = Word2Vec.load('w2v_OA_CR_100d.bin')
+
 app = FastAPI()
 def file_to_sentence_list(file_path):
     with open(file_path, 'r') as file:
@@ -102,7 +103,7 @@ async def word_similarity(word: str, top: int) -> List[str]:
     Finds the most similar words to a given word using a Word2Vec model.
     """
     try:
-        similar_words = [word for word, similarity in model.wv.most_similar(word, topn=top)]
+        similar_words = [word for word, similarity in modelvector.wv.most_similar(word, topn=top)]
         return similar_words
     except KeyError:
         return {"error": f"Word '{word}' not found in the vocabulary."}
