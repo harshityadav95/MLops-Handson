@@ -38,7 +38,7 @@ try:
     # Try to load the model and tokenizer
     model = tf.keras.models.load_model(model_filename)
     with open(tokenizer_filename, 'rb') as handle:
-        tokenizer = pickle.load(handle)
+        tokenizer = pickle.load(handle,allow_pickle=True)
 
     # Get total_words and max_sequence_len from the loaded tokenizer
     total_words = len(tokenizer.word_index) + 1
