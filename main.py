@@ -85,7 +85,7 @@ except:
     # Save the model and tokenizer
     model.save(model_filename)
     with open(tokenizer_filename, 'wb') as handle:
-        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL,)
+        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     print("Model and tokenizer saved.")
 
