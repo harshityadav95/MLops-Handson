@@ -13,7 +13,7 @@ import pickle
 from fastapi import FastAPI
 
 
-modelvector = Word2Vec.load('w2v_OA_CR_100d.bin')
+# modelvector = Word2Vec.load('w2v_OA_CR_100d.bin')
 
 app = FastAPI()
 def file_to_sentence_list(file_path):
@@ -36,9 +36,9 @@ tokenizer_filename = 'tokenizer.pickle'
 
 try:
     # Try to load the model and tokenizer
-    model = tf.keras.models.load_model(model_filename,allow_pickle=True)
+    model = tf.keras.models.load_model(model_filename)
     with open(tokenizer_filename, 'rb') as handle:
-        tokenizer = pickle.load(handle,allow_pickle=True)
+        tokenizer = pickle.load(handle)
 
     # Get total_words and max_sequence_len from the loaded tokenizer
     total_words = len(tokenizer.word_index) + 1
@@ -97,16 +97,16 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/word_similarity/{word}/{top}")
-async def word_similarity(word: str, top: int) -> List[str]:
-    """
-    Finds the most similar words to a given word using a Word2Vec model.
-    """
-    try:
-        similar_words = [word for word, similarity in modelvector.wv.most_similar(word, topn=top)]
-        return similar_words
-    except KeyError:
-        return {"error": f"Word '{word}' not found in the vocabulary."}
+# @app.get("/word_similarity/{word}/{top}")
+# async def word_similarity(word: str, top: int) -> List[str]:
+#     """
+#     Finds the most similar words to a given word using a Word2Vec model.
+#     """
+#     try:
+#         similar_words = [word for word, similarity in modelvector.wv.most_similar(word, topn=top)]
+#         return similar_words
+#     except KeyError:
+#         return {"error": f"Word '{word}' not found in the vocabulary."}
 
 
 @app.get("/auto_complete/{text}/{next}")
