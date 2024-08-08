@@ -1,6 +1,3 @@
-# Fast-API-Starter-Template
-Starter Template for Fast API
-
 # Setting up the virtual environment
 ## Setting up Virtual Environment
 ```
