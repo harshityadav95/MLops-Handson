@@ -36,7 +36,7 @@ tokenizer_filename = 'tokenizer.pickle'
 
 try:
     # Try to load the model and tokenizer
-    model = tf.keras.models.load_model(model_filename)
+    model = tf.keras.models.load_model(model_filename,allow_pickle=True)
     with open(tokenizer_filename, 'rb') as handle:
         tokenizer = pickle.load(handle,allow_pickle=True)
 
@@ -85,7 +85,7 @@ except:
     # Save the model and tokenizer
     model.save(model_filename)
     with open(tokenizer_filename, 'wb') as handle:
-        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL,)
 
     print("Model and tokenizer saved.")
 
